@@ -6,7 +6,7 @@ import { HiMenuAlt1 } from "react-icons/hi";
 
 const Header = () => {
   const user = false;
-  const [openMenu, setOpenMenu] = useState(true);
+  const [openMenu, setOpenMenu] = useState(false);
   const menuLink = (
     <>
       <NavLink className="navLink" to="/">
