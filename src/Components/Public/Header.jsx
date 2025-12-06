@@ -40,7 +40,7 @@ const Header = () => {
   );
 
   return (
-    <header className="sticky top-0 z-20">
+    <header className="sticky top-0 z-20 backdrop-blur-3xl">
       <div className="max-w-[1440px] mx-auto px-5 py-3 flex items-center justify-between border-b border-secondary/30 relative">
         <div className="flex items-center gap-1">
           <HiMenuAlt1

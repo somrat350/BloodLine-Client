@@ -8,7 +8,7 @@ const PublicLayout = () => {
     <div className="flex flex-col min-h-screen">
       <ToastContainer />
       <Header />
-      <div className="grow w-full max-w-[1440px] mx-auto my-5">
+      <div className="grow w-full max-w-[1440px] mx-auto my-5 px-5">
         <Outlet />
       </div>
       <Footer />
