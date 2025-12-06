@@ -85,7 +85,7 @@ const Register = () => {
               id="userImage"
               className="file-input file-input-secondary w-full pr-8"
             />
-            <span className="absolute right-0 top-1/5 z-10 p-1">
+            <span className="absolute right-0 top-1 z-10 p-1">
               <CiImageOn className="text-2xl" />
             </span>
           </div>
@@ -237,7 +237,7 @@ const Register = () => {
             />
             <span
               onClick={() => setPasswordType(!passwordType)}
-              className="absolute right-0 top-1/5 z-10 p-1 cursor-pointer"
+              className="absolute right-0 top-1 z-10 p-1 cursor-pointer"
             >
               {passwordType ? (
                 <FaRegEyeSlash className="text-2xl" />
@@ -268,7 +268,7 @@ const Register = () => {
             />
             <span
               onClick={() => setConfirmPasswordType(!confirmPasswordType)}
-              className="absolute right-0 top-1/5 z-10 p-1 cursor-pointer"
+              className="absolute right-0 top-1 z-10 p-1 cursor-pointer"
             >
               {confirmPasswordType ? (
                 <FaRegEyeSlash className="text-2xl" />
