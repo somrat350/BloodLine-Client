@@ -49,35 +49,6 @@ const DonorHome = () => {
                 </tr>
               </thead>
 
-              {/* requesterName
-"Abdullah Al Mamun"
-requesterEmail
-"mdsomratsordaro350@gmail.com"
-recipientName
-"Shamim Reza"
-recipientDivision
-"Rajshahi"
-recipientDistrict
-"Bogura"
-recipientUpazila
-"Sherpur"
-hospitalName
-"Bogura Shaheed Ziaur Rahman Medical College Hospital"
-fullAddressLine
-"Sherpur Road, Bogura"
-bloodGroup
-"B+"
-donationDate
-"2025-12-20"
-donationTime
-"09:00 AM"
-requestMessage
-"The patient is admitted due to dengue shock syndrome and needs blood u…"
-donationStatus
-"pending"
-createdAt
-"2025-12-07T12:00:00.000Z" */}
-
               <tbody>
                 {recentRequests.map((req, i) => (
                   <tr key={req._id}>

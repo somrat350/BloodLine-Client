@@ -4,10 +4,14 @@ import { FaStar } from "react-icons/fa";
 import { CiHospital1, CiLocationOn, CiMail, CiUser } from "react-icons/ci";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 const NewDonationRequest = () => {
   const { user, userLoading } = useAuth();
-  const { register, handleSubmit, control } = useForm();
+  const { register, handleSubmit, control, reset } = useForm();
+  const instanceSecure = useAxiosSecure();
 
   const division = useWatch({ control, name: "recipientDivision" });
   const district = useWatch({ control, name: "recipientDistrict" });
@@ -15,6 +19,9 @@ const NewDonationRequest = () => {
   const [divisions, setDivisions] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [upazilas, setUpazilas] = useState([]);
+  const [status, setStatus] = useState("active");
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   const bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
 
@@ -28,7 +35,11 @@ const NewDonationRequest = () => {
     axios.get("/upazilas.json").then((res) => {
       setUpazilas(res.data);
     });
-  }, []);
+    instanceSecure.get(`/currentUser?email=${user?.email}`).then((res) => {
+      setStatus(res.data.status);
+      setLoading(false);
+    });
+  }, [user, instanceSecure]);
 
   const districtsByDivision = (divisionId) => {
     const divisionDistricts = districts.filter(
@@ -47,13 +58,48 @@ const NewDonationRequest = () => {
   };
 
   const onSubmit = async (data) => {
+    // check user status
+    if (status === "blocked") {
+      toast.error(
+        "You don't have permission to create new request. Because you are blocked by admin!"
+      );
+      return;
+    }
+
+    setLoading(true);
+
+    const finalDivision = divisions.find(
+      (d) => data.recipientDivision === d.id
+    );
+    const finalDistrict = districts.find(
+      (d) => data.recipientDistrict === d.id
+    );
+    data.recipientDivision = finalDivision.name;
+    data.recipientDistrict = finalDistrict.name;
+
     // add default donation status
     data.donationStatus = "pending";
     data.createdAt = new Date();
-    console.log(data);
+
+    try {
+      const res = await instanceSecure.post(
+        `/newDonationRequest?email=${user?.email}`,
+        data
+      );
+      if (res.data.insertedId) {
+        toast.success("Donation request created successfully!");
+        navigate("/dashboard");
+        reset();
+      }
+    } catch (err) {
+      toast.error("Something went wrong!");
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  if (userLoading) return;
+  if ((userLoading, loading)) return;
 
   return (
     <div>
