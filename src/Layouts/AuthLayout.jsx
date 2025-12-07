@@ -1,10 +1,13 @@
-import { Link, Outlet, useLocation } from "react-router";
+import { Link, Outlet, useLocation, useNavigate } from "react-router";
 import authImg from "../assets/authImg.png";
 import Logo from "../Components/Public/Logo";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
+import useAuth from "../Hooks/useAuth";
 
 const AuthLayout = () => {
+  const { user, userLoading } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
   let bannerTitle;
   if (
     location.pathname === "/auth" ||
@@ -14,6 +17,14 @@ const AuthLayout = () => {
     bannerTitle = "Welcome Back";
   } else {
     bannerTitle = "Join As A Donor";
+  }
+
+  if (userLoading) return <span>Loading...</span>;
+
+  if (user) {
+    toast.info("You are already joined with us.");
+    navigate("/");
+    return;
   }
   return (
     <div className="flex flex-col min-h-screen p-5 max-w-[1440px] mx-auto">

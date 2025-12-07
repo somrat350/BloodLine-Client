@@ -10,9 +10,9 @@
 }
 
 .navLink {
-  @apply text-base btn hover:border-secondary;
+  @apply text-base hover:text-secondary px-4 duration-300;
 }
 
 .navLink.active {
-  @apply btn-secondary;
+  @apply text-secondary;
 }

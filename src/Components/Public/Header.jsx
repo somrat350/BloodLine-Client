@@ -3,10 +3,12 @@ import Logo from "./Logo";
 import { useState } from "react";
 import { HiXMark } from "react-icons/hi2";
 import { HiMenuAlt1 } from "react-icons/hi";
+import useAuth from "../../Hooks/useAuth";
 
 const Header = () => {
-  const user = false;
+  const { user, userLoading } = useAuth();
   const [openMenu, setOpenMenu] = useState(false);
+  if (userLoading) return;
   const menuLink = (
     <>
       <NavLink className="navLink" to="/">
