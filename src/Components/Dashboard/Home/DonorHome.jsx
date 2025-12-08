@@ -27,7 +27,17 @@ const DonorHome = () => {
   return (
     <div>
       {/* Recent 3 Donation Requests */}
-      {recentRequests.length > 0 && (
+      {recentRequests.length === 0 ? (
+        <div className="mt-5 flex flex-col items-center gap-3">
+          <p className="text-center">You don't have any donation request!</p>
+          <Link
+            to="/dashboard/newDonationRequest"
+            className="btn btn-secondary"
+          >
+            Create New Donation Request
+          </Link>
+        </div>
+      ) : (
         <div className="shadow-md p-6 rounded-xl">
           <h3 className="text-xl font-semibold mb-4">
             Your Recent Donation Requests
@@ -55,7 +65,7 @@ const DonorHome = () => {
                     <td>{i + 1}</td>
                     <td>{req.recipientName}</td>
                     <td>
-                      {req.recipientDistrict}, {req.recipientUpazila}
+                      {req.recipientDistrict}, <br /> {req.recipientUpazila}
                     </td>
                     <td>{req.donationDate}</td>
                     <td>{req.donationTime}</td>
@@ -113,7 +123,7 @@ const DonorHome = () => {
                           <li>
                             {/* Edit (Always available) */}
                             <Link
-                              to={`/dashboard/edit-donation-request/${req._id}`}
+                              to={`/dashboard/editDonationRequest/${req._id}`}
                               className="btn btn-sm btn-warning text-white"
                             >
                               Edit

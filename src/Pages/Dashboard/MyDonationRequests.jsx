@@ -122,7 +122,7 @@ const MyDonationRequests = () => {
                           <li>
                             {/* Edit (Always available) */}
                             <Link
-                              to={`/dashboard/edit-donation-request/${req._id}`}
+                              to={`/dashboard/editDonationRequest/${req._id}`}
                               className="btn btn-sm btn-warning text-white"
                             >
                               Edit
