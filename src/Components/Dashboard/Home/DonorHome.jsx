@@ -56,6 +56,35 @@ const DonorHome = () => {
     });
   };
 
+  const handleStatusUpdate = (id, donationStatus) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: `Yes, ${donationStatus} it!`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setLoading(true);
+        instanceSecure
+          .put(`/updateRequest/${id}?email=${user?.email}`, { donationStatus })
+          .then((res) => {
+            setLoading(false);
+            if (res.data.modifiedCount > 0) {
+              refetch();
+              Swal.fire({
+                title: donationStatus === "canceled" ? "Canceled!" : "Done!",
+                text: `Your request has been ${donationStatus}.`,
+                icon: "success",
+              });
+            }
+          });
+      }
+    });
+  };
+
   if (userLoading || isLoading || loading)
     return <p className="text-center mt-5">Loading...</p>;
 
@@ -180,16 +209,18 @@ const DonorHome = () => {
                             <>
                               <button
                                 className="btn btn-sm btn-success text-white"
-                                // onClick={() => handleStatusUpdate(req._id, "done")}
+                                onClick={() =>
+                                  handleStatusUpdate(req._id, "done")
+                                }
                               >
                                 Done
                               </button>
 
                               <button
                                 className="btn btn-sm btn-neutral text-white"
-                                // onClick={() =>
-                                //   handleStatusUpdate(req._id, "canceled")
-                                // }
+                                onClick={() =>
+                                  handleStatusUpdate(req._id, "canceled")
+                                }
                               >
                                 Cancel
                               </button>
