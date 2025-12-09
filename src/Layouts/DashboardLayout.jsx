@@ -6,7 +6,7 @@ import { CgProfile } from "react-icons/cg";
 import { RxDashboard } from "react-icons/rx";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { LuGitPullRequest } from "react-icons/lu";
-import { FaUsersViewfinder } from "react-icons/fa6";
+import { FaBorderAll, FaUsersViewfinder } from "react-icons/fa6";
 
 const DashboardLayout = () => {
   const { role } = useRole();
@@ -58,6 +58,18 @@ const DashboardLayout = () => {
           {/* Profile icon */}
           <LuGitPullRequest className="font-bold text-xl" />
           <span className="is-drawer-close:hidden">My Donation Requests</span>
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          end
+          to="/dashboard/allDonationRequests"
+          className="is-drawer-close:tooltip is-drawer-close:tooltip-right navLink"
+          data-tip="All Donation Requests"
+        >
+          {/* Profile icon */}
+          <FaBorderAll className="font-bold text-xl" />
+          <span className="is-drawer-close:hidden">All Donation Requests</span>
         </NavLink>
       </li>
       {role === "admin" && (
