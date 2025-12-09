@@ -58,6 +58,11 @@ const MyDonationRequests = () => {
   };
 
   const handleStatusUpdate = (id, donationStatus) => {
+    const updatedInfo = { donationStatus };
+    if (donationStatus === "canceled") {
+      updatedInfo.donorEmail = null;
+      updatedInfo.donorName = null;
+    }
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -70,7 +75,7 @@ const MyDonationRequests = () => {
       if (result.isConfirmed) {
         setLoading(true);
         instanceSecure
-          .put(`/updateRequest/${id}?email=${user?.email}`, { donationStatus })
+          .put(`/updateRequest/${id}?email=${user?.email}`, updatedInfo)
           .then((res) => {
             setLoading(false);
             if (res.data.modifiedCount > 0) {
