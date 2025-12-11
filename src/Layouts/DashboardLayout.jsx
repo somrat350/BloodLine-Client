@@ -40,7 +40,7 @@ const DashboardLayout = () => {
       <li>
         <NavLink
           end
-          to="/dashboard/funding"
+          to="/funding"
           className="is-drawer-close:tooltip is-drawer-close:tooltip-right navLink"
           data-tip="Funding"
         >

@@ -31,7 +31,7 @@ const AdminHome = () => {
     queryKey: ["funding", user?.email],
     enabled: !!user?.email,
     queryFn: async () => {
-      const res = await instanceSecure.get(`/funding`);
+      const res = await instanceSecure.get(`/funding?email=${user?.email}`);
       return res.data;
     },
   });
