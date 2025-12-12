@@ -1,12 +1,13 @@
 import AdminHome from "../../Components/Dashboard/Home/AdminHome";
 import DonorHome from "../../Components/Dashboard/Home/DonorHome";
+import Loading from "../../Components/Loading";
 import useAuth from "../../Hooks/useAuth";
 import useRole from "../../Hooks/useRole";
 
 const DashboardHome = () => {
   const { role, isLoading } = useRole();
   const { user, userLoading } = useAuth();
-  if (isLoading || userLoading) return;
+  if (isLoading || userLoading) return <Loading />;
   return (
     <div>
       <h1 className="text-3xl font-bold flex items-center gap-2">Dashboard</h1>
@@ -17,9 +18,7 @@ const DashboardHome = () => {
           👋
         </h2>
 
-        <p className="mt-2">
-          Thank you for being a valuable blood donor.
-        </p>
+        <p className="mt-2">Thank you for being a valuable blood donor.</p>
       </div>
       {role === "donor" && <DonorHome />}
       {role === "admin" && <AdminHome />}

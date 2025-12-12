@@ -5,6 +5,7 @@ import { Link } from "react-router";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Swal from "sweetalert2";
 import { useState } from "react";
+import Loading from "../../Loading";
 
 const DonorHome = () => {
   const { user, userLoading } = useAuth();
@@ -90,8 +91,7 @@ const DonorHome = () => {
     });
   };
 
-  if (userLoading || isLoading || loading)
-    return <p className="text-center mt-5">Loading...</p>;
+  if (userLoading || isLoading || loading) return <Loading />;
 
   return (
     <div>

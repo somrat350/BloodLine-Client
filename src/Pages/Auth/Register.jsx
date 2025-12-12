@@ -7,9 +7,10 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import useAuth from "../../Hooks/useAuth";
 import useAxios from "../../Hooks/useAxios";
+import Loading from "../../Components/Loading";
 
 const Register = () => {
-  const { createUEP, updateUser, setUserLoading } = useAuth();
+  const { createUEP, updateUser, userLoading, setUserLoading } = useAuth();
   const { register, handleSubmit, control } = useForm();
   const instance = useAxios();
 
@@ -21,6 +22,7 @@ const Register = () => {
   const [passValidateText, setPassValidateText] = useState("");
   const [password, setPassword] = useState("");
   const [confirmError, setConfirmError] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const division = useWatch({ control, name: "division" });
   const district = useWatch({ control, name: "district" });
@@ -40,6 +42,7 @@ const Register = () => {
     });
     axios.get("/upazilas.json").then((res) => {
       setUpazilas(res.data);
+      setLoading(false);
     });
   }, []);
 
@@ -93,12 +96,15 @@ const Register = () => {
 
   // handle form data on submit
   const onSubmit = async (data) => {
+    setLoading(true);
     if (!password) {
       toast.error("Please enter validate password!");
+      setLoading(false);
       return;
     }
     if (password !== data.confirmPassword) {
       setConfirmError("Confirm password not matched.");
+      setLoading(false);
       return;
     } else {
       setConfirmError("");
@@ -139,9 +145,12 @@ const Register = () => {
         toast.success("Registration successful.");
       })
       .finally(() => {
+        setLoading(false);
         setUserLoading(false);
       });
   };
+
+  if (userLoading || loading) return <Loading />;
 
   return (
     <div className="sm:p-5 mt-10 w-full max-w-5xl mx-auto">

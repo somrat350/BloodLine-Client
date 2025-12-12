@@ -12,10 +12,13 @@ import { BiLogOut } from "react-icons/bi";
 import { GoHome } from "react-icons/go";
 import useAuth from "../Hooks/useAuth";
 import Swal from "sweetalert2";
+import Loading from "../Components/Loading";
 
 const DashboardLayout = () => {
-  const { logout } = useAuth();
-  const { role } = useRole();
+  const { userLoading, logout } = useAuth();
+  const { role, isLoading } = useRole();
+
+  if (userLoading || isLoading) return <Loading />;
 
   const handleLogout = () => {
     Swal.fire({

@@ -7,6 +7,7 @@ import { FaRegEdit } from "react-icons/fa";
 import { CiImageOn, CiMail, CiUser } from "react-icons/ci";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Loading from "../../Components/Loading";
 
 const Profile = () => {
   const instanceSecure = useAxiosSecure();
@@ -138,8 +139,7 @@ const Profile = () => {
     setLoading(false);
   };
 
-  if (isLoading || loading || userLoading)
-    return <p className="text-center">Loading...</p>;
+  if (isLoading || loading || userLoading) return <Loading />;
 
   return (
     <div>

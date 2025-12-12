@@ -5,8 +5,9 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import { toast } from "react-toastify";
+import Loading from "../../Components/Loading";
 const Login = () => {
-  const { loginUEP, setUserLoading } = useAuth();
+  const { userLoading, loginUEP, setUserLoading } = useAuth();
   const { register, handleSubmit } = useForm();
   const [passwordType, setPasswordType] = useState(true);
 
@@ -29,6 +30,8 @@ const Login = () => {
         setUserLoading(false);
       });
   };
+
+  if (userLoading) return <Loading />;
 
   return (
     <div className="sm:p-5 mt-10 w-full max-w-5xl mx-auto">

@@ -6,6 +6,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { Link } from "react-router";
 import useRole from "../../Hooks/useRole";
 import Swal from "sweetalert2";
+import Loading from "../../Components/Loading";
 
 const AllDonationRequests = () => {
   const { user, userLoading } = useAuth();
@@ -120,7 +121,7 @@ const AllDonationRequests = () => {
         </span>
         <div className="overflow-x-auto mt-5">
           {userLoading || isLoading || loading ? (
-            "Loading..."
+            <Loading />
           ) : (
             <table className="table w-full">
               <thead>
@@ -170,9 +171,7 @@ const AllDonationRequests = () => {
                       req.donationStatus === "done" ? (
                         <div>
                           <p>{req.donorName}</p>
-                          <p className="text-xs">
-                            {req.donorEmail}
-                          </p>
+                          <p className="text-xs">{req.donorEmail}</p>
                         </div>
                       ) : (
                         "-"

@@ -6,6 +6,7 @@ import useAxios from "../../../Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import TopDonorPieChart from "../../../Components/Public/Funding/TopDonorPieChart";
+import Loading from "../../../Components/Loading";
 
 const Funding = () => {
   const { user, userLoading } = useAuth();
@@ -52,6 +53,8 @@ const Funding = () => {
       return res.data;
     },
   });
+
+  if (userLoading || loading || isLoading) return <Loading />;
 
   const handlePayment = async (e) => {
     setLoading(true);
@@ -103,7 +106,7 @@ const Funding = () => {
       </div>
       <div className="overflow-x-auto mt-5">
         {userLoading || loading || isLoading ? (
-          "Loading..."
+          <Loading />
         ) : (
           <table className="table w-full">
             <thead>

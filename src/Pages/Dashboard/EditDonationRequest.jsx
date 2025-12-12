@@ -7,6 +7,7 @@ import useAuth from "../../Hooks/useAuth";
 import { useEffect, useState } from "react";
 import { CiHospital1, CiLocationOn, CiMail, CiUser } from "react-icons/ci";
 import axios from "axios";
+import Loading from "../../Components/Loading";
 
 const EditDonationRequest = () => {
   const { id } = useParams();
@@ -117,8 +118,7 @@ const EditDonationRequest = () => {
     setLoading(false);
   };
 
-  if (isLoading || loading)
-    return <p className="text-center mt-5">Loading...</p>;
+  if (isLoading || loading) return <Loading />;
 
   return (
     <div>

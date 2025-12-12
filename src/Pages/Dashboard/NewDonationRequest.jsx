@@ -7,6 +7,7 @@ import axios from "axios";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
+import Loading from "../../Components/Loading";
 
 const NewDonationRequest = () => {
   const { user, userLoading } = useAuth();
@@ -99,7 +100,7 @@ const NewDonationRequest = () => {
     }
   };
 
-  if ((userLoading, loading)) return;
+  if (userLoading || loading) return <Loading />;
 
   return (
     <div>

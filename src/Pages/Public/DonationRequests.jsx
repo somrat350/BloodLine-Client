@@ -8,6 +8,7 @@ import {
 import { Link } from "react-router";
 import useAxios from "../../Hooks/useAxios";
 import { useState } from "react";
+import Loading from "../../Components/Loading";
 
 const DonationRequests = () => {
   const instance = useAxios();
@@ -33,7 +34,7 @@ const DonationRequests = () => {
         Donation Requests
       </h2>
       {isLoading ? (
-        <p className="text-xl font-bold text-center">Data is loading...</p>
+        <Loading />
       ) : donationRequests.length === 0 ? (
         <p className="text-xl font-bold text-center">
           No pending request available!

@@ -1,6 +1,5 @@
 import { useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
-import useAxios from "../../Hooks/useAxios";
 import useAuth from "../../Hooks/useAuth";
 import {
   FaHospitalAlt,
@@ -12,11 +11,15 @@ import {
 } from "react-icons/fa";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import Loading from "../../Components/Loading";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useAxios from "../../Hooks/useAxios";
 
 const RequestDetails = () => {
   const { id } = useParams();
   const { user } = useAuth();
   const instance = useAxios();
+  const instanceSecure = useAxiosSecure();
   const [loading, setLoading] = useState(false);
 
   const {
@@ -42,7 +45,7 @@ const RequestDetails = () => {
       donationStatus: "inprogress",
     };
 
-    instance
+    instanceSecure
       .put(`/updateRequest/${id}?email=${user.email}`, updatedInfo)
       .then((res) => {
         setLoading(false);
@@ -55,7 +58,7 @@ const RequestDetails = () => {
       });
   };
 
-  if (isLoading || loading) return;
+  if (isLoading || loading) return <Loading />;
 
   return (
     <div className="shadow-lg rounded-xl">

@@ -2,12 +2,13 @@ import { Link, Outlet, useLocation } from "react-router";
 import authImg from "../assets/authImg.png";
 import Logo from "../Components/Public/Logo";
 import useAuth from "../Hooks/useAuth";
+import Loading from "../Components/Loading";
 
 const AuthLayout = () => {
   const { user, userLoading } = useAuth();
   const location = useLocation();
 
-  if (userLoading) return <span>Loading...</span>;
+  if (userLoading) return <Loading />;
 
   let bannerTitle;
   if (user) {

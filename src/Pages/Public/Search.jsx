@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import useAxios from "../../Hooks/useAxios";
+import Loading from "../../Components/Loading";
 
 const Search = () => {
   const [divisions, setDivisions] = useState([]);
@@ -66,7 +67,7 @@ const Search = () => {
       `/allUsers?division=${data.division}&district=${data.district}&upazila=${data?.upazila}&bloodGroup=${resultString}&bgStatus=${bgStatus}`
     );
 
-    setDonors(res.data);
+    setDonors(res.data.result);
     setLoading(false);
   };
 
@@ -131,7 +132,7 @@ const Search = () => {
       </form>
 
       {loading ? (
-        "Loading..."
+        <Loading />
       ) : (
         <>
           {donors.length > 0 ? (

@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { toast } from "react-toastify";
+import Loading from "../../../Components/Loading";
 
 const AllUsers = () => {
   const { user, userLoading } = useAuth();
@@ -74,7 +75,7 @@ const AllUsers = () => {
         </span>
         <div className="overflow-x-auto mt-10">
           {userLoading || isLoading ? (
-            "Loading..."
+            <Loading />
           ) : (
             <table className="table w-full">
               <thead>
