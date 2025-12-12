@@ -27,18 +27,14 @@ const AdminHome = () => {
     },
   });
   // Fetch all funding
-  const { data: funding = [], isLoading: loadingFunding } = useQuery({
-    queryKey: ["funding", user?.email],
+  const { data: totalAmount, isLoading: loadingFunding } = useQuery({
+    queryKey: ["totalAmount", user?.email],
     enabled: !!user?.email,
     queryFn: async () => {
-      const res = await instanceSecure.get(`/funding?email=${user?.email}`);
+      const res = await instanceSecure.get(`/totalAmount`);
       return res.data;
     },
   });
-  let totalAmount = 0;
-  if (funding.length > 0) {
-    totalAmount = funding.reduce((sum, fund) => sum + fund.amount, 0);
-  }
 
   if ((loadingRequests || loadingUsers, loadingFunding)) return;
   return (

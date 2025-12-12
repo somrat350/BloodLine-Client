@@ -14,20 +14,36 @@ const Funding = () => {
   const [amount, setAmount] = useState(100);
   const instance = useAxios();
   const instanceSecure = useAxiosSecure();
+  const [currentPage, setCurrentPage] = useState(0);
+  const limit = 5;
+  const skip = currentPage * limit;
 
   // Fetch funding by this user
-  const { data: funding = [], isLoading } = useQuery({
-    queryKey: ["funding", user?.email, sortBy],
+  const { data: fundingData = {}, isLoading } = useQuery({
+    queryKey: ["funding", user?.email, sortBy, currentPage],
     enabled: !!user?.email,
     queryFn: async () => {
       const res = await instanceSecure.get(
-        `/funding?email=${user?.email}&sortBy=${sortBy}`
+        `/funding?email=${user?.email}&limit=${limit}&skip=${skip}&sortBy=${sortBy}`
       );
       return res.data;
     },
   });
 
-  // Fetch funding by this user
+  // Fetch total amount by this user
+  const { data: totalAmount } = useQuery({
+    queryKey: ["totalAmount", user?.email],
+    enabled: !!user?.email,
+    queryFn: async () => {
+      const res = await instanceSecure.get(`/totalAmount?email=${user?.email}`);
+      return res.data;
+    },
+  });
+
+  const funding = fundingData.result || [];
+  const totalPages = Math.ceil(fundingData.total / limit);
+
+  // Fetch top funder
   const { data: topFunder = [] } = useQuery({
     queryKey: ["topFunder", user?.email],
     enabled: !!user?.email,
@@ -36,11 +52,6 @@ const Funding = () => {
       return res.data;
     },
   });
-
-  let totalAmount = 0;
-  if (funding.length > 0) {
-    totalAmount = funding.reduce((sum, fund) => sum + fund.amount, 0);
-  }
 
   const handlePayment = async (e) => {
     setLoading(true);
@@ -108,7 +119,7 @@ const Funding = () => {
             <tbody>
               {funding.map((fund, i) => (
                 <tr key={fund._id}>
-                  <td className="hidden sm:table-cell">{i + 1}</td>
+                  <td className="hidden sm:table-cell">{skip + i + 1}</td>
                   <td className="hidden sm:table-cell">{fund.name}</td>
                   <td className="text-secondary font-bold">{fund.amount}</td>
                   <td>{fund.date}</td>
@@ -131,10 +142,30 @@ const Funding = () => {
         )}
       </div>
       <div className="flex items-center justify-between gap-3 mt-5">
-        <span className="text-secondary font-bold">Page 1 of 3</span>
+        {totalPages > 0 ? (
+          <span className="text-secondary font-bold">
+            Page {currentPage + 1} of {totalPages}
+          </span>
+        ) : (
+          <span className="text-secondary font-bold">Page 0 of 0</span>
+        )}
         <div className="flex items-center gap-3">
-          <button className="btn btn-outline btn-secondary btn-sm">Prev</button>
-          <button className="btn btn-outline btn-secondary btn-sm">Next</button>
+          {currentPage > 0 && (
+            <button
+              onClick={() => setCurrentPage(currentPage - 1)}
+              className="btn btn-outline btn-secondary btn-sm"
+            >
+              Prev
+            </button>
+          )}
+          {currentPage + 1 < totalPages && (
+            <button
+              onClick={() => setCurrentPage(currentPage + 1)}
+              className="btn btn-outline btn-secondary btn-sm"
+            >
+              Next
+            </button>
+          )}
         </div>
       </div>
       <div className="my-10">
