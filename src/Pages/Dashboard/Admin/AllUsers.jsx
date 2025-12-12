@@ -33,7 +33,7 @@ const AllUsers = () => {
   const allUsers = allUsersData.result || [];
   const totalPages = Math.ceil(allUsersData.total / limit);
 
-  const handleUpdateUser = async (id, email, status, role) => {
+  const handleUpdateUser = async (email, status, role) => {
     if (email === user.email) {
       toast.error(`You don't have permission to update your self !`);
       return;
@@ -46,7 +46,7 @@ const AllUsers = () => {
       updatedData.role = role;
     }
     const res = await instanceSecure.put(
-      `/updateProfile/${id}?email=${user?.email}`,
+      `/updateProfile?email=${email}`,
       updatedData
     );
     if (res.data.modifiedCount > 0) {
@@ -90,30 +90,30 @@ const AllUsers = () => {
               </thead>
 
               <tbody>
-                {allUsers.map((user, i) => (
-                  <tr key={user._id}>
+                {allUsers.map((u, i) => (
+                  <tr key={u._id}>
                     <td>{skip + i + 1}</td>
                     <td>
                       <img
-                        src={user.photoURL}
+                        src={u.photoURL}
                         className="w-10 h-10 rounded-full"
                       />
                     </td>
                     <td>
-                      {user.name}
-                      <br /> {user.email}
+                      {u.name}
+                      <br /> {u.email}
                     </td>
-                    <td>{user.role}</td>
+                    <td>{u.role}</td>
 
                     {/* Status */}
                     <td
                       className={`font-bold ${
-                        user.status === "active"
+                        u.status === "active"
                           ? "text-green-600"
                           : "text-red-600"
                       }`}
                     >
-                      {user.status}
+                      {u.status}
                     </td>
 
                     {/* Action Buttons */}
@@ -126,15 +126,10 @@ const AllUsers = () => {
                           tabIndex="-1"
                           className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm gap-1"
                         >
-                          {user.status === "active" ? (
+                          {u.status === "active" ? (
                             <button
                               onClick={() =>
-                                handleUpdateUser(
-                                  user._id,
-                                  user.email,
-                                  "blocked",
-                                  null
-                                )
+                                handleUpdateUser(u.email, "blocked", null)
                               }
                               className="btn btn-sm btn-secondary text-white"
                             >
@@ -143,12 +138,7 @@ const AllUsers = () => {
                           ) : (
                             <button
                               onClick={() =>
-                                handleUpdateUser(
-                                  user._id,
-                                  user.email,
-                                  "active",
-                                  null
-                                )
+                                handleUpdateUser(u.email, "active", null)
                               }
                               className="btn btn-sm btn-success text-white"
                             >
@@ -158,12 +148,7 @@ const AllUsers = () => {
                           {user.role !== "donor" && (
                             <button
                               onClick={() =>
-                                handleUpdateUser(
-                                  user._id,
-                                  user.email,
-                                  null,
-                                  "donor"
-                                )
+                                handleUpdateUser(u.email, null, "donor")
                               }
                               className="btn btn-sm btn-info text-white"
                             >
@@ -173,12 +158,7 @@ const AllUsers = () => {
                           {user.role !== "volunteer" && (
                             <button
                               onClick={() =>
-                                handleUpdateUser(
-                                  user._id,
-                                  user.email,
-                                  null,
-                                  "volunteer"
-                                )
+                                handleUpdateUser(u.email, null, "volunteer")
                               }
                               className="btn btn-sm btn-info text-white"
                             >
@@ -188,12 +168,7 @@ const AllUsers = () => {
                           {user.role !== "admin" && (
                             <button
                               onClick={() =>
-                                handleUpdateUser(
-                                  user._id,
-                                  user.email,
-                                  null,
-                                  "admin"
-                                )
+                                handleUpdateUser(u.email, null, "admin")
                               }
                               className="btn btn-sm btn-info text-white"
                             >
