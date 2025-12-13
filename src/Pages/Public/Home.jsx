@@ -5,6 +5,7 @@ import Featured from "../../Components/Public/Home/Featured";
 const Home = () => {
   return (
     <div>
+      <title>Home | BloodLine</title>
       <Banner />
       <Featured />
       <Contact />

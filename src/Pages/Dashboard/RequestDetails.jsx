@@ -62,6 +62,7 @@ const RequestDetails = () => {
   if (!request)
     return (
       <div className="flex justify-center items-center gap-5 flex-col py-10">
+        <title>Details Not Found | BloodLine</title>
         <p className="text-center font-bold text-xl">
           Sorry, request not found!
         </p>
@@ -73,6 +74,7 @@ const RequestDetails = () => {
 
   return (
     <div className="shadow-lg rounded-xl">
+      <title>Request Details | BloodLine</title>
       <h1 className="text-3xl font-bold mb-5">Donation Request Details</h1>
 
       {/* Card */}

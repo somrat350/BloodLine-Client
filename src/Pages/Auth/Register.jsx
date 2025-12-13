@@ -154,6 +154,7 @@ const Register = () => {
 
   return (
     <div className="sm:p-5 mt-10 w-full max-w-5xl mx-auto">
+      <title>Register | BloodLine</title>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="grid sm:grid-cols-2 gap-5"

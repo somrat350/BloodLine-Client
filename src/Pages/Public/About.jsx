@@ -1,6 +1,7 @@
 const About = () => {
   return (
     <div className="max-w-5xl mx-auto px-4 py-10">
+      <title>About Us | BloodLine</title>
       <h1 className="text-4xl font-bold text-center mb-6">
         About <span className="text-secondary">BloodLine</span>
       </h1>

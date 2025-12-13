@@ -57,6 +57,7 @@ const AllUsers = () => {
 
   return (
     <div>
+      <title>All Users | BloodLine</title>
       <h2 className="text-3xl font-bold">All Users</h2>
       <div className="p-2 sm:p-5">
         <div className="mt-2 flex justify-end">
@@ -147,7 +148,7 @@ const AllUsers = () => {
                               Unblocked
                             </button>
                           )}
-                          {user.role !== "donor" && (
+                          {u.role !== "donor" && (
                             <button
                               onClick={() =>
                                 handleUpdateUser(u.email, null, "donor")
@@ -157,7 +158,7 @@ const AllUsers = () => {
                               Make Donor
                             </button>
                           )}
-                          {user.role !== "volunteer" && (
+                          {u.role !== "volunteer" && (
                             <button
                               onClick={() =>
                                 handleUpdateUser(u.email, null, "volunteer")
@@ -167,7 +168,7 @@ const AllUsers = () => {
                               Make Volunteer
                             </button>
                           )}
-                          {user.role !== "admin" && (
+                          {u.role !== "admin" && (
                             <button
                               onClick={() =>
                                 handleUpdateUser(u.email, null, "admin")

@@ -122,6 +122,7 @@ const EditDonationRequest = () => {
 
   return (
     <div>
+      <title>Edit Donation Request | BloodLine</title>
       <h2 className="text-3xl font-bold mb-5">Edit Donation Request</h2>
 
       <form

@@ -3,6 +3,7 @@ import { Link } from "react-router";
 const PaymentCanceled = () => {
   return (
     <div className="flex items-center justify-center my-5">
+      <title>Payment Canceled | BloodLine</title>
       <div className="bg-white shadow-2xl rounded-2xl p-5 sm:p-10 max-w-lg text-center border-t-4 border-secondary">
         {/* Icon */}
         <div className="flex justify-center mb-5">

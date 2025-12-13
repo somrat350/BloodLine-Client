@@ -73,6 +73,7 @@ const Search = () => {
 
   return (
     <div className="py-5 min-h-screen">
+      <title>Search Donor | BloodLine</title>
       <h2 className="text-3xl font-bold text-center text-secondary mb-4">
         Search Blood Donors
       </h2>

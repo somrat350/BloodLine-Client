@@ -29,6 +29,7 @@ const PaymentSuccessful = () => {
 
   return (
     <div className="flex justify-center items-center">
+      <title>Payment Successful | BloodLine</title>
       {loading ? (
         <Loading />
       ) : (

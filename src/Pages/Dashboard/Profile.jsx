@@ -143,6 +143,7 @@ const Profile = () => {
 
   return (
     <div>
+      <title>Profile | BloodLine</title>
       <h2 className="text-3xl font-bold">Profile</h2>
       {/* Header with Edit Button */}
       <div className="flex justify-end mb-5 sm:pr-5">

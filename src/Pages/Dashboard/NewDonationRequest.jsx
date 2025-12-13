@@ -104,6 +104,7 @@ const NewDonationRequest = () => {
 
   return (
     <div>
+      <title>Create A New Donation Request | BloodLine</title>
       <h2 className="text-3xl font-bold">New Donation Request</h2>
 
       <form

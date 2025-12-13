@@ -75,6 +75,7 @@ const Funding = () => {
   };
   return (
     <div className="">
+      <title>Funding | BloodLine</title>
       <h2 className="text-3xl font-bold mb-5">Funding</h2>
       <div className="flex items-center justify-end gap-5">
         <div className="flex flex-col items-end">

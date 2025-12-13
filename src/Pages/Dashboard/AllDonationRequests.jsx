@@ -101,6 +101,7 @@ const AllDonationRequests = () => {
   };
   return (
     <div>
+      <title>All Donation Requests | BloodLine</title>
       <h2 className="text-3xl font-bold">All Donation Requests</h2>
       <div className="p-2 sm:p-5">
         <div className="mt-2 flex justify-end">

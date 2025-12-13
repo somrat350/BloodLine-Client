@@ -115,7 +115,7 @@ const DonorHome = () => {
           <div className="overflow-x-auto">
             <table className="table w-full">
               <thead>
-                <tr className="font-semibold text-gray-700">
+                <tr className="font-semibold">
                   <th>#</th>
                   <th>Recipient</th>
                   <th>Location</th>
@@ -161,7 +161,7 @@ const DonorHome = () => {
                       req.donationStatus === "done" ? (
                         <div>
                           <p>{req.donorName}</p>
-                          <p className="text-xs text-gray-500">
+                          <p className="text-xs">
                             {req.donorEmail}
                           </p>
                         </div>

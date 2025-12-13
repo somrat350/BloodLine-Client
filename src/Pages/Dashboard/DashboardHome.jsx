@@ -10,6 +10,7 @@ const DashboardHome = () => {
   if (isLoading || userLoading) return <Loading />;
   return (
     <div>
+      <title>Dashboard | BloodLine</title>
       <h1 className="text-3xl font-bold flex items-center gap-2">Dashboard</h1>
 
       <div className="shadow-md p-5 rounded-xl">

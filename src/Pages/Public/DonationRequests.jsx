@@ -30,6 +30,7 @@ const DonationRequests = () => {
   const totalPages = Math.ceil(donationRequestsData.total / limit);
   return (
     <div>
+      <title>All Donation Requests | BloodLine</title>
       <h2 className="text-3xl font-bold text-center text-secondary mb-10">
         Donation Requests
       </h2>
