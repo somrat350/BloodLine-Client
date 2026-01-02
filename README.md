@@ -1,63 +1,68 @@
-# 🩸 BloodLine – Client Side (Frontend)
+# 🩸 BloodLine — Frontend (Client Side)
 
-## 🌐 Live Demo
+<p align="center">
+  <img src="https://img.shields.io/badge/React-19-blue?logo=react" />
+  <img src="https://img.shields.io/badge/Vite-⚡-purple?logo=vite" />
+  <img src="https://img.shields.io/badge/TailwindCSS-4.1-06B6D4?logo=tailwindcss" />
+  <img src="https://img.shields.io/badge/DaisyUI-UI-5A0EF8?logo=daisyui" />
+  <img src="https://img.shields.io/badge/Firebase-Auth-FFCA28?logo=firebase" />
+  <img src="https://img.shields.io/badge/React_Router-v7-CA4245?logo=reactrouter" />
+  <img src="https://img.shields.io/badge/React_Query-Data-FF4154?logo=reactquery" />
+  <img src="https://img.shields.io/badge/Axios-HTTP-5A29E4?logo=axios" />
+  <img src="https://img.shields.io/badge/ESLint-Code%20Quality-4B32C3?logo=eslint" />
+</p>
 
-👉 **Live Website:** [BloodLine](https://assignment-no11-48bd1.web.app/)
-
-BloodLine is a modern blood donation platform where users can **request blood** and **donate blood** to others.  
-This repository contains the **frontend** of the BloodLine application.
-
----
-
-## 🌟 Features
-
-- 🧑‍🤝‍🧑 User registration & login
-- 🩸 Create blood donation requests
-- 🤝 Donate blood to other users
-- 📍 Location-based donor & request matching
-- 🔔 Toast notifications
-- 📱 Fully responsive design
-- 🎨 Clean & modern UI using DaisyUI
+A modern and user-friendly blood donation platform that connects donors with people in need.
 
 ---
 
-## 🛠️ Tech Stack
+## 🌐 Live Project
 
-### ⚛️ Core
-
-- React 19
-- Vite
-
-### 🎨 UI & Styling
-
-- Tailwind CSS
-- DaisyUI
-- Swiper
-- React Icons
-- React Fast Marquee
-
-### 🔄 State & Forms
-
-- @tanstack/react-query
-- Axios
-- React Hook Form
-
-### 🔐 Authentication
-
-- Firebase
-
-### 🌐 Routing & UX
-
-- React Router v7
-- React Toastify
-
-### 🧹 Code Quality
-
-- ESLint
+🔗 **Live Website:** https://assignment-no11-48bd1.web.app/
 
 ---
 
-## 📦 Packages Used
+## 📸 Screenshot
+
+<img width="1269" height="800" alt="bloodLine" src="https://github.com/user-attachments/assets/9b599c87-a626-4f41-bac0-bc72a29da89c" />
+
+
+---
+
+## 🧩 Project Overview
+
+BloodLine is a web application designed to simplify the blood donation process...
+
+---
+
+## ✨ Core Features
+
+- User authentication (Register / Login)
+- Create and manage blood donation requests
+- Donate blood to other users
+- Search donors by blood group and location
+- Real-time UI updates
+- Toast notifications
+- Fully responsive design
+
+---
+
+## 🛠️ Technologies Used
+
+| Category | Tech |
+|----------|------|
+Frontend | React 19, Vite |
+Styling | Tailwind CSS, DaisyUI |
+Routing | React Router v7 |
+State | React Query |
+Forms | React Hook Form |
+Auth | Firebase |
+HTTP | Axios |
+Quality | ESLint |
+
+---
+
+## 📦 Dependencies
 
 ```json
 {
@@ -72,3 +77,48 @@ This repository contains the **frontend** of the BloodLine application.
   "swiper": "^12.0.3"
 }
 ```
+
+---
+
+## 🚀 How to Run Locally
+
+### Clone
+
+```bash
+git clone https://github.com/somrat350/Assignment-no11-client.git
+cd Assignment-no11-client
+```
+
+### Install
+
+```bash
+npm install
+```
+
+### Env
+
+```env
+VITE_apiKey=your_key
+VITE_authDomain=your_domain
+VITE_projectId=your_project_id
+VITE_storageBucket=your_storage_bucket
+VITE_messagingSenderId=your_messaging_sender_id
+VITE_appId=your_app_id
+```
+
+### Run
+
+```bash
+npm run dev
+```
+
+---
+
+## 🔗 Resources
+
+- https://assignment-no11-48bd1.web.app/
+- https://firebase.google.com
+- https://tailwindcss.com
+- https://daisyui.com
+
+---
