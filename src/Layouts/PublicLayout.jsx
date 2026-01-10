@@ -1,6 +1,7 @@
 import Header from "../Components/Public/Header";
 import { Outlet } from "react-router";
 import Footer from "../Components/Public/Footer";
+import BackToTop from "../Components/Public/BackToTop";
 
 const PublicLayout = () => {
   return (
@@ -8,6 +9,7 @@ const PublicLayout = () => {
       <Header />
       <div className="grow w-full">
         <Outlet />
+        <BackToTop />
       </div>
       <Footer />
     </div>

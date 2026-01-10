@@ -1,4 +1,10 @@
-import { Link, useParams } from "react-router";
+import {
+  Link,
+  Navigate,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../Hooks/useAuth";
 import {
@@ -19,6 +25,8 @@ const RequestDetails = () => {
   const { id } = useParams();
   const { user } = useAuth();
   const instance = useAxios();
+  const location = useLocation();
+  const navigate = useNavigate();
   const instanceSecure = useAxiosSecure();
   const [loading, setLoading] = useState(false);
 
@@ -28,7 +36,7 @@ const RequestDetails = () => {
     refetch,
   } = useQuery({
     queryKey: ["donation-request", id],
-    enabled: !!user?.email,
+    // enabled: !!user?.email,
     queryFn: async () => {
       const res = await instance.get(
         `/singleRequest/${id}?email=${user?.email}`
@@ -162,7 +170,13 @@ const RequestDetails = () => {
         <div className="flex items-center justify-between gap-3 mt-5">
           <button
             className="btn btn-secondary"
-            onClick={() => document.getElementById("donateModal").showModal()}
+            onClick={() => {
+              if (!user) {
+                navigate("/auth/login", { state: { from: location } });
+                return;
+              }
+              document.getElementById("donateModal").showModal();
+            }}
             disabled={request.donationStatus !== "pending"}
           >
             Donate Now

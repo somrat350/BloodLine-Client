@@ -28,7 +28,7 @@ const Home = () => {
       <FAQ />
       <NewsUpdates />
       <Contact />
-      <BackToTop />
+      {/* <BackToTop /> */}
     </div>
   );
 };

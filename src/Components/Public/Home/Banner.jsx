@@ -63,7 +63,7 @@ const Banner = () => {
                 <FaArrowRight className="ml-2" />
               </Link>
               <Link
-                to="/donationRequests"
+                to="/search"
                 className="btn btn-outline btn-secondary btn-sm sm:btn-md lg:btn-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 w-full sm:w-auto"
               >
                 Find Blood Donors

@@ -47,7 +47,7 @@ const QuickActions = () => {
       title: "Donor Network",
       description: "Connect with donor community",
       icon: <FaUsers className="text-2xl sm:text-3xl" />,
-      link: "/donors",
+      link: "/search",
       color: "from-primary to-primary/80",
       emoji: "👥"
     }
